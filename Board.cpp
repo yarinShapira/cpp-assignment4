@@ -1,15 +1,13 @@
 #include "Board.hpp"
 
-using namespace WarGame;
-
 
     // operator for putting soldiers on the game-board during initialization.
-    Soldier*& Board::operator[](std::pair<int,int> location){
-        
+    Soldier*& WarGame::Board::operator[](std::pair<int,int> location){
+        return;
     }
     
     // operator for reading which soldiers are on the game-board.
-    Soldier* Board::operator[](std::pair<int,int> location) const{
+    Soldier* WarGame::Board::operator[](std::pair<int,int> location) const{
         
     }
     
@@ -24,11 +22,11 @@ using namespace WarGame;
     // IMPLEMENTATION HINT: Do not write "if" conditions that depend on the type of soldier!
     // Your code should be generic. All handling of different types of soldiers 
     //      must be handled by polymorphism.
-    void move(uint player_number, std::pair<int,int> source, MoveDIR direction){
+    void WarGame::Board::move(uint player_number, std::pair<int,int> source, WarGame::Board::MoveDIR direction){
 
     }
 
     // returns true iff the board contains one or more soldiers of the given player.
-    bool has_soldiers(uint player_number) const{
-
+    bool WarGame::Board::has_soldiers(uint player_number) const{
+        return  true;
     }
