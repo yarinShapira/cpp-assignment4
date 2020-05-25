@@ -1,14 +1,18 @@
 #include "Board.hpp"
+#include "Soldier.hpp"
+#include "FootSoldier.hpp"
 
 
     // operator for putting soldiers on the game-board during initialization.
     Soldier*& WarGame::Board::operator[](std::pair<int,int> location){
-        return;
+         Soldier* a = new FootSoldier(1);
+        return a;
     }
     
     // operator for reading which soldiers are on the game-board.
     Soldier* WarGame::Board::operator[](std::pair<int,int> location) const{
-        
+        Soldier* a = new FootSoldier(1);
+        return a; 
     }
     
     // The function "move" tries to move the soldier of player "player"
@@ -29,4 +33,8 @@
     // returns true iff the board contains one or more soldiers of the given player.
     bool WarGame::Board::has_soldiers(uint player_number) const{
         return  true;
+    }
+
+    WarGame::Board::~Board(){
+
     }
