@@ -1,5 +1,7 @@
-#pragma once
+# pragma once
 #include <iostream>
+#include "Board.hpp"
+
 
 class Soldier{
 private:
@@ -9,6 +11,11 @@ private:
     
 public:
     Soldier(int HP, int DP, int player) : _HP(HP),_DP(DP),_player(player){}
-    virtual void move() = 0;
+    int get_player(){
+        return _player;
+    }
+    virtual void move(WarGame::Board::MoveDIR direction) = 0;
     virtual void activity() = 0;
+    virtual ~Soldier() = 0;
+
 };

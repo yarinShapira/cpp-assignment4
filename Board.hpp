@@ -1,3 +1,4 @@
+#pragma once
 /**
  * Header file for the board of the war game.
  * 
@@ -5,7 +6,7 @@
  * @author Erel Segal-Halevi
  * @since  2020-05
  */
-
+#include <iostream>
 #include <string>
 #include <vector>
 #include <stdexcept>

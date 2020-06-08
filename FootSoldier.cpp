@@ -1,6 +1,6 @@
 #include "FootSoldier.hpp"
 
-void FootSoldier::move(){
+void FootSoldier::move(WarGame::Board::MoveDIR direction){
 
 }
 void FootSoldier::activity(){

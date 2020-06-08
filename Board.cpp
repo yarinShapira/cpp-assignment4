@@ -5,14 +5,13 @@
 
     // operator for putting soldiers on the game-board during initialization.
     Soldier*& WarGame::Board::operator[](std::pair<int,int> location){
-         Soldier* a = new FootSoldier(1);
-        return a;
+        return board[location.first][location.second];
+
     }
     
     // operator for reading which soldiers are on the game-board.
     Soldier* WarGame::Board::operator[](std::pair<int,int> location) const{
-        Soldier* a = new FootSoldier(1);
-        return a; 
+        return board[location.first][location.second];
     }
     
     // The function "move" tries to move the soldier of player "player"
@@ -27,14 +26,70 @@
     // Your code should be generic. All handling of different types of soldiers 
     //      must be handled by polymorphism.
     void WarGame::Board::move(uint player_number, std::pair<int,int> source, WarGame::Board::MoveDIR direction){
-
+        if (board[source.first][source.second] == nullptr){
+            throw std::invalid_argument("source does not contain a soldier");
+        }
+        if (board[source.first][source.second]->get_player() != player_number){
+            throw std::invalid_argument("the player_number does not matche the player_number of thr soldier");
+        }
+        if (direction == WarGame::Board::MoveDIR::Up){
+            if (board[source.first + 1][source.second] == nullptr){
+                board[source.first + 1][source.second] = &*board[source.first][source.second];
+                board[source.first][source.second] == nullptr;
+                board[source.first + 1][source.second]->activity();
+            }
+            else{
+                throw std::invalid_argument("the target location is not available");
+            }
+        }
+        if (direction == WarGame::Board::MoveDIR::Down){
+            if (board[source.first - 1][source.second] == nullptr){
+                board[source.first - 1][source.second] = &*board[source.first][source.second];
+                board[source.first][source.second] == nullptr;
+                board[source.first - 1][source.second]->activity();
+            }
+            else{
+                throw std::invalid_argument("the target location is not available");
+            }
+        }
+        if (direction == WarGame::Board::MoveDIR::Right){
+            if (board[source.first][source.second + 1] == nullptr){
+                board[source.first][source.second + 1] = &*board[source.first][source.second];
+                board[source.first][source.second] == nullptr;
+                board[source.first][source.second + 1]->activity();
+            }
+            else{
+                throw std::invalid_argument("the target location is not available");
+            }
+        }
+        if (direction == WarGame::Board::MoveDIR::Left){
+            if (board[source.first][source.second - 1] == nullptr){
+                board[source.first][source.second - 1] = &*board[source.first][source.second];
+                board[source.first][source.second] == nullptr;
+                board[source.first][source.second - 1]->activity();
+            }
+            else{
+                throw std::invalid_argument("the target location is not available");
+            }
+        }
     }
 
     // returns true iff the board contains one or more soldiers of the given player.
     bool WarGame::Board::has_soldiers(uint player_number) const{
-        return  true;
+        for (size_t i = 0; i < board.size(); i++) {
+            for (size_t j = 0; j < board[i].size(); j++) {
+                if (board[i][j] != nullptr && player_number == board[i][j]->get_player()) return true;
+            }
+        }
+        return false;
     }
 
     WarGame::Board::~Board(){
-
+        for (size_t i = 0; i < board.size(); i++) {
+            for (size_t j = 0; j < board[i].size(); j++) {
+                if (board[i][j] != nullptr){
+                    delete board[i][j]; 
+                }
+            }    
+        }
     }
