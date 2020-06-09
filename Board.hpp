@@ -12,7 +12,6 @@
 #include <stdexcept>
 #include "Soldier.hpp"
 
-
 namespace WarGame {
 
 class Board {

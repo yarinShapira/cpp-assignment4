@@ -3,8 +3,7 @@
 
 class ParamedicCommander : public Soldier{
 public:
-    ParamedicCommander(int player) : Soldier(200, 100, player){
-    }
-    void move();
+    ParamedicCommander(int player) : Soldier(200, 100, player){}
     void activity();
+    ~ParamedicCommander();
 };

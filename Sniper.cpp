@@ -3,3 +3,8 @@
 void Sniper::activity(){
     
 }
+
+
+Sniper::~Sniper(){
+    
+}

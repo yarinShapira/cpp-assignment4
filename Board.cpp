@@ -1,6 +1,4 @@
 #include "Board.hpp"
-#include "Soldier.hpp"
-#include "FootSoldier.hpp"
 
 
     // operator for putting soldiers on the game-board during initialization.
@@ -35,7 +33,7 @@
         if (direction == WarGame::Board::MoveDIR::Up){
             if (board[source.first + 1][source.second] == nullptr){
                 board[source.first + 1][source.second] = &*board[source.first][source.second];
-                board[source.first][source.second] == nullptr;
+                board[source.first][source.second] = nullptr;
                 board[source.first + 1][source.second]->activity();
             }
             else{
@@ -45,7 +43,7 @@
         if (direction == WarGame::Board::MoveDIR::Down){
             if (board[source.first - 1][source.second] == nullptr){
                 board[source.first - 1][source.second] = &*board[source.first][source.second];
-                board[source.first][source.second] == nullptr;
+                board[source.first][source.second] = nullptr;
                 board[source.first - 1][source.second]->activity();
             }
             else{
@@ -55,7 +53,7 @@
         if (direction == WarGame::Board::MoveDIR::Right){
             if (board[source.first][source.second + 1] == nullptr){
                 board[source.first][source.second + 1] = &*board[source.first][source.second];
-                board[source.first][source.second] == nullptr;
+                board[source.first][source.second] = nullptr;
                 board[source.first][source.second + 1]->activity();
             }
             else{
@@ -65,7 +63,7 @@
         if (direction == WarGame::Board::MoveDIR::Left){
             if (board[source.first][source.second - 1] == nullptr){
                 board[source.first][source.second - 1] = &*board[source.first][source.second];
-                board[source.first][source.second] == nullptr;
+                board[source.first][source.second] = nullptr;
                 board[source.first][source.second - 1]->activity();
             }
             else{
