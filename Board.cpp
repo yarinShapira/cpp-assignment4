@@ -11,18 +11,7 @@
     Soldier* WarGame::Board::operator[](std::pair<int,int> location) const{
         return board[location.first][location.second];
     }
-    
-    // The function "move" tries to move the soldier of player "player"
-    //     from the "source" location to the "target" location,
-    //     and activates the special ability of the soldier.
-    // If the move is illegal, it throws "std::invalid_argument". 
-    // Illegal moves include:
-    //  * There is no soldier in the source location (i.e., the soldier pointer is null);
-    //  * The soldier in the source location belongs to the other player.
-    //  * There is already another soldier (of this or the other player) in the target location.
-    // IMPLEMENTATION HINT: Do not write "if" conditions that depend on the type of soldier!
-    // Your code should be generic. All handling of different types of soldiers 
-    //      must be handled by polymorphism.
+
     void WarGame::Board::move(uint player_number, std::pair<int,int> source, WarGame::Board::MoveDIR direction){
         if (board[source.first][source.second] == nullptr){
             throw std::invalid_argument("source does not contain a soldier");
@@ -31,44 +20,52 @@
             throw std::invalid_argument("the player_number does not matche the player_number of thr soldier");
         }
         if (direction == WarGame::Board::MoveDIR::Up){
-            if (board[source.first + 1][source.second] == nullptr){
+            if (board[source.first + 1][source.second] == nullptr && board.size() < source.first + 1){
                 board[source.first + 1][source.second] = &*board[source.first][source.second];
                 board[source.first][source.second] = nullptr;
-                board[source.first + 1][source.second]->activity();
+                board[source.first + 1][source.second]->activity(board,std::pair<int,int>{source.first + 1,source.second});
             }
             else{
+                std::cout << "up " << source.first + 1 << std::endl;
                 throw std::invalid_argument("the target location is not available");
             }
         }
         if (direction == WarGame::Board::MoveDIR::Down){
-            if (board[source.first - 1][source.second] == nullptr){
+            if (board[source.first - 1][source.second] == nullptr && source.first > 0){
                 board[source.first - 1][source.second] = &*board[source.first][source.second];
                 board[source.first][source.second] = nullptr;
-                board[source.first - 1][source.second]->activity();
+                board[source.first - 1][source.second]->activity(board,std::pair<int,int>{source.first - 1,source.second});
             }
             else{
+                std::cout << "Down " << source.first - 1 << std::endl;
                 throw std::invalid_argument("the target location is not available");
             }
         }
         if (direction == WarGame::Board::MoveDIR::Right){
-            if (board[source.first][source.second + 1] == nullptr){
+            if (board[source.first][source.second + 1] == nullptr && source.second + 1 < board[source.first].size()){
                 board[source.first][source.second + 1] = &*board[source.first][source.second];
                 board[source.first][source.second] = nullptr;
-                board[source.first][source.second + 1]->activity();
+                board[source.first][source.second + 1]->activity(board,std::pair<int,int>{source.first,source.second + 1});
             }
             else{
+                std::cout << "Right " << source.second + 1  << std::endl;
                 throw std::invalid_argument("the target location is not available");
             }
         }
         if (direction == WarGame::Board::MoveDIR::Left){
-            if (board[source.first][source.second - 1] == nullptr){
+            if (board[source.first][source.second - 1] == nullptr && source.second > 0){
                 board[source.first][source.second - 1] = &*board[source.first][source.second];
                 board[source.first][source.second] = nullptr;
-                board[source.first][source.second - 1]->activity();
+                board[source.first][source.second - 1]->activity(board,std::pair<int,int>{source.first,source.second - 1});
             }
             else{
+                std::cout << "Left " << source.second - 1 << std::endl;
                 throw std::invalid_argument("the target location is not available");
             }
+        }
+        if (board[target.first][target.second]->_HP < 1){
+            delete board[target.first][target.second];
+            board[target.first][target.second] = nullptr;
         }
     }
 
