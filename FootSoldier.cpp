@@ -1,12 +1,11 @@
 #include "FootSoldier.hpp"
 
 
-std::pair<int,int> FootSoldier::activity(std::vector<std::vector<Soldier*>> board, std::pair<int,int> location){
+void FootSoldier::activity(std::vector<std::vector<Soldier*>> board, std::pair<int,int> location){
     std::pair<int,int> target = search(board, location, this->get_player());
     if (target.first != -1){
         board[target.first][target.second]->injured(this->_DP);
     }
-    return target;
 }
 
 std::pair<int,int> FootSoldier::search(std::vector<std::vector<Soldier*>> board, std::pair<int,int> location, int player_number){

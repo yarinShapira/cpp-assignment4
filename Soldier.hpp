@@ -22,7 +22,7 @@ public:
     void healing(){
         _HP = _start_HP;
     }
-    virtual std::pair<int,int> activity(std::vector<std::vector<Soldier*>> board ,std::pair<int,int> location) = 0;
+    virtual void activity(std::vector<std::vector<Soldier*>> board ,std::pair<int,int> location) = 0;
     virtual ~Soldier(){
 
     }

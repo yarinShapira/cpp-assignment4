@@ -116,7 +116,6 @@
 	    board[{7,0}] = new FootCommander(2);//player 2 commanderSoldier {7,0}
 		board[{7,1}] = new FootSoldier(2);//player 2 footSoldier1 {7,1}
 	    board[{7,2}] = new FootSoldier(2);//player 2 footSoldier2 {7,2}
-
 	    CHECK(board.has_soldiers(2));
 
 	    board.move(1,{0,1},WarGame::Board::MoveDIR::Up); //player 2 footsoldier1 - 90
@@ -126,25 +125,23 @@
 	    board.move(1,{1,1},WarGame::Board::MoveDIR::Up); //player 2 footsoldier1 - 80 
 	    CHECK(board.has_soldiers(2));
 	    CHECK(board.has_soldiers(1));
-
 	    CHECK_THROWS(board.move(2,{7,0},WarGame::Board::MoveDIR::Left)); // cant move left
 	    board.move(2,{7,0},WarGame::Board::MoveDIR::Down); //player 1 commanderSoldier - 130, player 1 footsoldier1 - 70,   player 1 footsoldier2 - 90, 
-	    CHECK(board.has_soldiers(2));
+		CHECK(board.has_soldiers(2));
 	    CHECK(board.has_soldiers(1));
-
 	    board.move(1,{0,0},WarGame::Board::MoveDIR::Up);//player 2 commanderSoldier - 130, player 2 footsoldier1 - 70,   player 2 footsoldier2 - 90, 
 	    CHECK(board.has_soldiers(2));
 	    CHECK(board.has_soldiers(1));
 	    board.move(1,{1,0},WarGame::Board::MoveDIR::Down);
 	    CHECK(board.has_soldiers(2));
 	    CHECK(board.has_soldiers(1));
+
 	    board.move(1,{0,0},WarGame::Board::MoveDIR::Up);
 	    CHECK(board.has_soldiers(2));
 	    CHECK(board.has_soldiers(1));
 	    board.move(1,{1,0},WarGame::Board::MoveDIR::Down);
 	    CHECK(board.has_soldiers(2));
 	    CHECK(board.has_soldiers(1));
-
 	     board.move(1,{0,0},WarGame::Board::MoveDIR::Up);
 	    CHECK(board.has_soldiers(2));
 	    CHECK(board.has_soldiers(1));
