@@ -1,10 +1,10 @@
 #include "Sniper.hpp"
 
-void Sniper::activity(std::vector<std::vector<Soldier*>> board ,std::pair<int,int> location){
+ std::pair<int,int> Sniper::activity(std::vector<std::vector<Soldier*>> board ,std::pair<int,int> location){
     int max = -1;
-    std::pair<int,int> target;
+    std::pair<int,int> target{-1,-1};
     for (size_t i = 0; i < board.size(); i++) {
-        for (size_t j = 0; i < board[i].size(); j++) {
+        for (size_t j = 0; j < board[i].size(); j++) {
             if (board[i][j] != nullptr){
                 if (board[i][j]->_player != this->_player){
                     if (board[i][j]->_HP > max){
@@ -16,6 +16,7 @@ void Sniper::activity(std::vector<std::vector<Soldier*>> board ,std::pair<int,in
         }
     }
     if (max > 0) board[target.first][target.second]->injured(this->_DP);
+    return target;
 }
 
 
