@@ -10,11 +10,14 @@ STUDENT_OBJECTS := $(subst .cpp,.o,$(STUDENT_SOURCES))
 run: test
 	./$^
 
-test: TestRunner.o Test_amichai.o Test_oriane_yirat.o $(STUDENT_OBJECTS)
+demo: Demo.o DemoGame.o $(STUDENT_OBJECTS)
+	$(CXX) $(CXXFLAGS) $^ -o demo
+
+test: TestRunner.o Test_amichai.o Test_oriane_yirat.o Paramedic.o ParamedicCommander.o DemoGame.o FootSoldier.o Board.o Sniper.o FootCommander.o SniperCommander.o
 	$(CXX) $(CXXFLAGS) $^ -o test
 
 %.o: %.cpp $(HEADERS)
 	$(CXX) $(CXXFLAGS) --compile $< -o $@
 
 clean:
-	rm -f *.o test
+	rm -f *.o test demo
